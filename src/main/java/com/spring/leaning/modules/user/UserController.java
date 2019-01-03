@@ -13,8 +13,8 @@ public class UserController {
      */
     @RequestMapping("/login")
     public String toLogin(ModelAndView model,String error){
-        System.out.print("action:login");
-        model.addObject("msg","错误！");
-        return "login";
+//        System.out.print("action:login");
+//        model.addObject("msg","错误！");
+        return "/modules/User/login";
     }
 }

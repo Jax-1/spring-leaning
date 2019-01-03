@@ -22,15 +22,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception{
+//        http.authorizeRequests()
+//                .antMatchers("/admin/**").access("hasAnyRole('ADMIN')")
+//                .antMatchers("/dba/**").access("hasAnyRole('ROLE_ADMIN') or hasAnyRole('ROLE_DBA')")
+//                .and()
+//                .formLogin().loginPage("/index?module=User&action=login")
+//                .defaultSuccessUrl("/index?module=home&action=index").failureUrl("/index?module=User&action=login&error=1")
+//                .usernameParameter("user-name").passwordParameter("pass-word")
+//                .and()
+//                .logout().logoutSuccessUrl("/index?module=User&action=loginOut")
+//                .and()
+//                .csrf();
         http.authorizeRequests()
                 .antMatchers("/admin/**").access("hasAnyRole('ADMIN')")
                 .antMatchers("/dba/**").access("hasAnyRole('ROLE_ADMIN') or hasAnyRole('ROLE_DBA')")
                 .and()
-                .formLogin().loginPage("/index?module=User&action=login")
-                .defaultSuccessUrl("/index?module=home&action=index").failureUrl("/index?module=User&action=login&error=1")
+                .formLogin().loginPage("/User/login")
+                .defaultSuccessUrl("/index").failureUrl("/User/login?error=1")
                 .usernameParameter("user-name").passwordParameter("pass-word")
                 .and()
-                .logout().logoutSuccessUrl("/index?module=User&action=loginOut")
+                .logout().logoutSuccessUrl("/loginOut")
                 .and()
                 .csrf();
     }
